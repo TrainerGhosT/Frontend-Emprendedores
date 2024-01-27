@@ -1,0 +1,177 @@
+<header class="antialiased">
+  <nav class="bg-gray-900 border-gray-300 px-4 lg:px-6 py-2.5">
+    <div class="flex flex-wrap justify-between items-center">
+      <div class="flex justify-start items-center">
+
+        <a href="/" class="flex">
+          <img src="./assets/img/logo.png" class="h-[70px] mr-2" alt="SFGE Logo" />
+          <span class="self-center text-2xl font-semibold whitespace-nowrap text-slate-300">SGFE APP</span>
+        </a>
+      </div>
+
+
+
+      <img mat-button [matMenuTriggerFor]="menu" class="w-14 h-14 rounded-full object-cover cursor-pointer"
+        src="./assets/img/logo-lambda.jpg" alt="User dropdown">
+    </div>
+
+
+    <mat-menu #menu="matMenu">
+      <button routerLink="/" routerLinkActive="router-link-active" mat-menu-item>
+        <mat-icon><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="fill-indigo-500 bi bi-house"
+            viewBox="0 0 16 16">
+            <path
+              d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5z" />
+          </svg></mat-icon>
+        <span>Inicio</span>
+      </button>
+
+      <button routerLink="/" routerLinkActive="router-link-active" mat-menu-item>
+        <mat-icon><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+            class="fill-indigo-500 bi bi-person-circle" viewBox="0 0 16 16">
+            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+            <path fill-rule="evenodd"
+              d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
+          </svg></mat-icon>
+        <span>Perfil</span>
+      </button>
+
+      <button routerLink="/" routerLinkActive="router-link-active" mat-menu-item>
+        <mat-icon><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="fill-indigo-500 bi bi-bell"
+            viewBox="0 0 16 16">
+            <path
+              d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2M8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6" />
+          </svg></mat-icon>
+        <span>Notificaciones</span>
+      </button>
+
+      <button routerLink="/" routerLinkActive="router-link-active" mat-menu-item>
+        <mat-icon><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="fill-indigo-500 bi bi-sliders"
+            viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M11.5 2a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3M9.05 3a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0V3zM4.5 7a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3M2.05 8a2.5 2.5 0 0 1 4.9 0H16v1H6.95a2.5 2.5 0 0 1-4.9 0H0V8zm9.45 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3m-2.45 1a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0v-1z" />
+          </svg></mat-icon>
+        <span>Preferencias</span>
+      </button>
+
+      <button routerLink="/" routerLinkActive="router-link-active" mat-menu-item>
+        <mat-icon><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+            class="fill-indigo-500 bi bi-box-arrow-right" viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z" />
+            <path fill-rule="evenodd"
+              d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
+          </svg></mat-icon>
+        <span>Cerrar Sesión</span>
+      </button>
+
+    </mat-menu>
+
+
+  </nav>
+</header>
+
+
+
+
+<section
+  class="grid max-w-screen-2xl justify-center px-16 mx-36 -my-12 gap-4 lg:gap-8 grid-cols-1  sm:grid-col-2 xs:grid-col-2 xs:grid md:grid-col-2 xl:gap-10  lg:py-16 lg:grid-cols-3 ">
+
+  <section class="max-w-md  border  rounded-lg shadow bg-gray-800 border-indigo-500">
+    <a href="#">
+      <img class=" self-center object-cover rounded-t-lg" src="./assets/img/feria img 2.jpg" alt="" />
+    </a>
+    <div class="p-5">
+      <a href="#">
+        <h5 class="mb-2 text-xl font-bold tracking-tight text-indigo-400 ">Feria de Diseño Digital</h5>
+      </a>
+      <p class="mb-3 font-normal text-slate-300 ">Desde gráficos impresionantes hasta experiencias de usuario
+        inolvidables, esta feria destaca el arte y la ciencia del diseño digital. La creatividad se encuentra con la
+        tecnología para crear experiencias impactantes.</p>
+      <a href="#"
+        class="inline-flex items-center px-4 py-3 text-sm font-medium text-center text-slate-200  rounded-lg  focus:ring-4 focus:outline-none  bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-800">
+        Ver Detalles
+        <svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" class="ml-2 fill-slate-200"
+          viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.-->
+          <path
+            d="M320 0c-17.7 0-32 14.3-32 32s14.3 32 32 32h82.7L201.4 265.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L448 109.3V192c0 17.7 14.3 32 32 32s32-14.3 32-32V32c0-17.7-14.3-32-32-32H320zM80 32C35.8 32 0 67.8 0 112V432c0 44.2 35.8 80 80 80H400c44.2 0 80-35.8 80-80V320c0-17.7-14.3-32-32-32s-32 14.3-32 32V432c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16V112c0-8.8 7.2-16 16-16H192c17.7 0 32-14.3 32-32s-14.3-32-32-32H80z" />
+        </svg>
+
+      </a>
+
+    </div>
+  </section>
+  <section class="max-w-md  border  rounded-lg shadow bg-gray-800 border-indigo-500">
+    <a href="#">
+      <img class=" self-center object-cover rounded-t-lg" src="./assets/img/feria img 4.jpg" alt="" />
+    </a>
+    <div class="p-5">
+      <a href="#">
+        <h5 class="mb-2 text-xl font-bold tracking-tight text-indigo-400 ">Feria Tech Innovadora</h5>
+      </a>
+      <p class="mb-3 font-normal text-slate-300 ">Descubre las últimas tendencias en tecnología, desde gadgets
+        inteligentes hasta innovaciones disruptivas. ¡No te pierdas la oportunidad de explorar el futuro en un solo
+        lugar!</p>
+      <a href="#"
+        class="inline-flex items-center px-4 py-3 text-sm font-medium text-center text-slate-200  rounded-lg  focus:ring-4 focus:outline-none  bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-800">
+        Ver Detalles
+        <svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" class="ml-2 fill-slate-200"
+          viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.-->
+          <path
+            d="M320 0c-17.7 0-32 14.3-32 32s14.3 32 32 32h82.7L201.4 265.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L448 109.3V192c0 17.7 14.3 32 32 32s32-14.3 32-32V32c0-17.7-14.3-32-32-32H320zM80 32C35.8 32 0 67.8 0 112V432c0 44.2 35.8 80 80 80H400c44.2 0 80-35.8 80-80V320c0-17.7-14.3-32-32-32s-32 14.3-32 32V432c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16V112c0-8.8 7.2-16 16-16H192c17.7 0 32-14.3 32-32s-14.3-32-32-32H80z" />
+        </svg>
+
+      </a>
+
+    </div>
+  </section>
+  <section class="max-w-md  border  rounded-lg shadow bg-gray-800 border-indigo-500">
+    <a href="#">
+      <img class=" self-center object-cover rounded-t-lg" src="./assets/img/feria img 3.jpg" alt="" />
+    </a>
+    <div class="p-5">
+      <a href="#">
+        <h5 class="mb-2 text-xl font-bold tracking-tight text-indigo-400 ">Feria de Realidad Virtual</h5>
+      </a>
+      <p class="mb-3 font-normal text-slate-300 ">Sumérgete en un mundo de posibilidades con la última tecnología de
+        realidad virtual. Experimenta la innovación en entretenimiento, educación y más. ¡Ven y descubre la magia de lo
+        virtual!</p>
+      <a href="#"
+        class="inline-flex items-center px-4 py-3 text-sm font-medium text-center text-slate-200  rounded-lg  focus:ring-4 focus:outline-none  bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-800">
+        Ver Detalles
+        <svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" class="ml-2 fill-slate-200"
+          viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.-->
+          <path
+            d="M320 0c-17.7 0-32 14.3-32 32s14.3 32 32 32h82.7L201.4 265.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L448 109.3V192c0 17.7 14.3 32 32 32s32-14.3 32-32V32c0-17.7-14.3-32-32-32H320zM80 32C35.8 32 0 67.8 0 112V432c0 44.2 35.8 80 80 80H400c44.2 0 80-35.8 80-80V320c0-17.7-14.3-32-32-32s-32 14.3-32 32V432c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16V112c0-8.8 7.2-16 16-16H192c17.7 0 32-14.3 32-32s-14.3-32-32-32H80z" />
+        </svg>
+
+      </a>
+
+    </div>
+  </section>
+  <section class="max-w-md  border  rounded-lg shadow bg-gray-800 border-indigo-500">
+    <a href="#">
+      <img class=" self-center object-cover rounded-t-lg" src="./assets/img/feria img 4.jpg" alt="" />
+    </a>
+    <div class="p-5">
+      <a href="#">
+        <h5 class="mb-2 text-xl font-bold tracking-tight text-indigo-400 ">Feria Tech Innovadora</h5>
+      </a>
+      <p class="mb-3 font-normal text-slate-300 ">Descubre las últimas tendencias en tecnología, desde gadgets
+        inteligentes hasta innovaciones disruptivas. ¡No te pierdas la oportunidad de explorar el futuro en un solo
+        lugar!</p>
+      <a href="#"
+        class="inline-flex items px-4 py-3 text-sm font-medium text-center text-slate-200  rounded-lg  focus:ring-4 focus:outline-none  bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-800">
+        Ver Detalles
+        <svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" class="ml-2 fill-slate-200"
+          viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.-->
+          <path
+            d="M320 0c-17.7 0-32 14.3-32 32s14.3 32 32 32h82.7L201.4 265.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L448 109.3V192c0 17.7 14.3 32 32 32s32-14.3 32-32V32c0-17.7-14.3-32-32-32H320zM80 32C35.8 32 0 67.8 0 112V432c0 44.2 35.8 80 80 80H400c44.2 0 80-35.8 80-80V320c0-17.7-14.3-32-32-32s-32 14.3-32 32V432c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16V112c0-8.8 7.2-16 16-16H192c17.7 0 32-14.3 32-32s-14.3-32-32-32H80z" />
+        </svg>
+
+      </a>
+
+    </div>
+  </section>
+
+</section>
