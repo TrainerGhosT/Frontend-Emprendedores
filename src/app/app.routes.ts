@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import HomeComponent from './home/home.component';
+import HomeComponent from './pages/Home/Layout/home.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
@@ -10,7 +10,7 @@ export const routes: Routes = [
   // },
   {
     path: 'Ferias',
-    loadComponent: () => import('./ferias/components/feria.component'),
+    loadComponent: () => import('./pages/Ferias/layout/feria.component'),
   },
   // { path: "Registro", component: SignupComponent },
   // { path: "Inicio", component: HomeComponent },
