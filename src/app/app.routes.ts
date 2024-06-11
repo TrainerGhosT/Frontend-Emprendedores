@@ -1,8 +1,8 @@
 import { Routes } from '@angular/router';
-import HomeComponent from './pages/Home/Layout/home.component';
+import RootComponent from './pages/Root/Layout/root.component';
 
 export const routes: Routes = [
-  { path: '', component: HomeComponent, pathMatch: 'full' },
+  { path: '', component: RootComponent, pathMatch: 'full' },
   // {
   //   path: "Login",
   //   loadComponent: () =>
@@ -10,7 +10,11 @@ export const routes: Routes = [
   // },
   {
     path: 'Ferias',
-    loadComponent: () => import('./pages/Ferias/layout/feria.component'),
+    loadComponent: () => import('./pages/Ferias/Layout/feria.component'),
+  },
+  {
+    path: 'Login',
+    loadComponent: () => import('./pages/Auth/Login/Layout/login.component'),
   },
   // { path: "Registro", component: SignupComponent },
   // { path: "Inicio", component: HomeComponent },

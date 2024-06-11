@@ -1,0 +1,119 @@
+<section class="bg-gray-900 min-h-screen flex items-center justify-center">
+    <div
+      class="w-full justify-self-center max-w-md p-6 space-y-6 bg-white rounded-lg shadow dark:bg-gray-900 border-[3px] dark:border-indigo-500 dark:text-white"
+    >
+      <div class="flex justify-center">
+        <LogoComponent></LogoComponent>
+      </div>
+      <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 dark:text-white">
+        Ingresá con tu cuenta
+      </h1>
+  
+      <!-- Alertas -->
+      @if (alertVisible && alertType === 'success') {
+      <div
+        class="flex items-center p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 border dark:border-green-400 dark:bg-gray-900 dark:text-green-400"
+        role="alert"
+      >
+      <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#4ade80"><path d="M423.28-291.22 708.87-576.8l-62.46-62.7-223.13 223.13L312.15-527.5l-62.45 62.7 173.58 173.58ZM480-71.87q-84.91 0-159.34-32.12-74.44-32.12-129.5-87.17-55.05-55.06-87.17-129.5Q71.87-395.09 71.87-480t32.12-159.34q32.12-74.44 87.17-129.5 55.06-55.05 129.5-87.17 74.43-32.12 159.34-32.12t159.34 32.12q74.44 32.12 129.5 87.17 55.05 55.06 87.17 129.5 32.12 74.43 32.12 159.34t-32.12 159.34q-32.12 74.44-87.17 129.5-55.06 55.05-129.5 87.17Q564.91-71.87 480-71.87Zm0-91q133.04 0 225.09-92.04 92.04-92.05 92.04-225.09 0-133.04-92.04-225.09-92.05-92.04-225.09-92.04-133.04 0-225.09 92.04-92.04 92.05-92.04 225.09 0 133.04 92.04 225.09 92.05 92.04 225.09 92.04ZM480-480Z"/></svg>
+        <span class="sr-only">Info</span>
+        <div>
+          <span class="font-medium px-1">{{ alertType }}: {{ alertMessage }}</span>
+        </div>
+      </div>
+      } 
+      @if (alertVisible && alertType === 'warning') {
+      <div
+        class="flex items-center p-4 mb-4 text-sm text-yellow-800 rounded-lg bg-yellow-50 border border-yellow-500 dark:bg-gray-900 dark:text-yellow-500"
+        role="alert"
+      >
+      <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#F19E39"><path d="M479.95-271.87q19.92 0 33.45-13.48 13.53-13.48 13.53-33.4 0-19.92-13.47-33.58-13.48-13.65-33.41-13.65-19.92 0-33.45 13.65-13.53 13.66-13.53 33.58 0 19.92 13.47 33.4 13.48 13.48 33.41 13.48ZM434.5-439.52h91v-245.5h-91v245.5ZM480-71.87q-84.91 0-159.34-32.12-74.44-32.12-129.5-87.17-55.05-55.06-87.17-129.5Q71.87-395.09 71.87-480t32.12-159.34q32.12-74.44 87.17-129.5 55.06-55.05 129.5-87.17 74.43-32.12 159.34-32.12t159.34 32.12q74.44 32.12 129.5 87.17 55.05 55.06 87.17 129.5 32.12 74.43 32.12 159.34t-32.12 159.34q-32.12 74.44-87.17 129.5-55.06 55.05-129.5 87.17Q564.91-71.87 480-71.87Zm0-91q133.04 0 225.09-92.04 92.04-92.05 92.04-225.09 0-133.04-92.04-225.09-92.05-92.04-225.09-92.04-133.04 0-225.09 92.04-92.04 92.05-92.04 225.09 0 133.04 92.04 225.09 92.05 92.04 225.09 92.04ZM480-480Z"/></svg>
+        <span class="sr-only">Info</span>
+        <div>
+          <span class="font-medium px-1">{{ alertType }}: {{ alertMessage }}</span>
+        </div>
+      </div>
+      }
+  
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="space-y-6">
+        <div>
+          <label
+            for="Correo"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >Correo o Cédula</label
+          >
+          <input
+            type="text"
+            formControlName="Correo"
+            id="Correo"
+            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="name@company.com o 102340567"
+            required
+          />
+          @if (loginForm.controls['Correo'].invalid &&
+          (loginForm.controls['Correo'].dirty ||
+          loginForm.controls['Correo'].touched)) {
+          <p class="text-sm text-yellow-500">Por favor, ingrese un correo o cédula válido.</p>
+          }
+        </div>
+        <div>
+          <label
+            for="password"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >Contraseña</label
+          >
+          <input
+            type="password"
+            formControlName="Contraseña"
+            id="password"
+            placeholder="••••••••"
+            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-md rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            required
+          />
+          @if (loginForm.controls['Contraseña'].invalid &&
+          (loginForm.controls['Contraseña'].dirty ||
+          loginForm.controls['Contraseña'].touched)) {
+          <p class="text-sm text-yellow-500">La contraseña es requerida.</p>
+          }
+        </div>
+        <div class="flex items-center justify-between">
+          <div class="flex items-start">
+            <div class="flex items-center h-5">
+              <input
+                id="remember"
+                aria-describedby="remember"
+                type="checkbox"
+                class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
+              />
+            </div>
+            <div class="ml-3 text-sm">
+              <label for="remember" class="text-gray-500 dark:text-gray-300"
+                >Remember me</label
+              >
+            </div>
+          </div>
+          <a
+            href="#"
+            class="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500"
+            >Forgot password?</a
+          >
+        </div>
+        <button
+          type="submit"
+          class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-md px-5 py-2.5 text-center bg-gradient-to-br dark:from-primary-500 dark:to-indigo-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+        >
+        
+          Sign in
+        </button>
+        <p class="text-sm font-light text-gray-500 dark:text-gray-400">
+          Aún no tiene una cuenta?
+          <a
+            href="#"
+            class="font-medium text-primary-600 hover:underline dark:text-primary-500"
+            >Créate una!</a
+          >
+        </p>
+      </form>
+    </div>
+  </section>
+  

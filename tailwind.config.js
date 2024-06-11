@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  darkMode: "class",
+  darkMode: "media",
   content: ["./src/**/*.{html,ts}"],
   theme: {
     extend: {
@@ -22,6 +22,7 @@ module.exports = {
     },
     fontFamily: {
       body: [
+        "Montserrat",
         "Inter",
         "ui-sans-serif",
         "system-ui",
@@ -39,6 +40,7 @@ module.exports = {
         "Noto Color Emoji",
       ],
       sans: [
+        "Montserrat",
         "Inter",
         "ui-sans-serif",
         "system-ui",

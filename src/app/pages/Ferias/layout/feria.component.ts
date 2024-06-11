@@ -3,10 +3,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { RouterLink } from '@angular/router';
+import { LogoComponent } from '../../../components/Logo/logo.component';
 @Component({
   selector: 'app-feria',
   standalone: true,
-  imports: [MatButtonModule, MatMenuModule, MatIconModule, RouterLink],
+  imports: [MatButtonModule, MatMenuModule, MatIconModule, RouterLink, LogoComponent],
   templateUrl: './feria.component.html',
   styleUrl: './feria.component.css'
 })
