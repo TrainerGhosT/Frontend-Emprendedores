@@ -5,11 +5,10 @@ import { MatMenuModule } from '@angular/material/menu';
 import { RouterLink } from '@angular/router';
 import { LogoComponent } from '../../../components/Logo/logo.component';
 @Component({
-  selector: 'app-feria',
-  standalone: true,
-  imports: [MatButtonModule, MatMenuModule, MatIconModule, RouterLink, LogoComponent],
-  templateUrl: './feria.component.html',
-  styleUrl: './feria.component.css'
+    selector: 'app-feria',
+    imports: [MatButtonModule, MatMenuModule, MatIconModule, RouterLink, LogoComponent],
+    templateUrl: './feria.component.html',
+    styleUrl: './feria.component.css'
 })
 export default class FeriaComponent {
 

@@ -7,11 +7,10 @@ import { RouterLink } from '@angular/router';
 
 
 @Component({
-  selector: 'app-home',
-  standalone: true,
-  imports: [CommonModule, MatButtonModule, MatMenuModule, LogoComponent, RouterLink],
-  templateUrl: './root.component.html',
-  styles: ''
+    selector: 'app-home',
+    imports: [CommonModule, MatButtonModule, MatMenuModule, LogoComponent, RouterLink],
+    templateUrl: './root.component.html',
+    styles: ''
 })
 export default class RootComponent {
   title = 'frontend';

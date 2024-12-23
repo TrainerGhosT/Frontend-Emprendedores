@@ -7,11 +7,10 @@ import { LogoComponent } from '../../../../components/Logo/logo.component';
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({
-  selector: 'app-login',
-  standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, LogoComponent, MatIconModule],
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
+    selector: 'app-login',
+    imports: [CommonModule, ReactiveFormsModule, LogoComponent, MatIconModule],
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.css']
 })
 export default class LoginComponent {
   loginForm: FormGroup;
