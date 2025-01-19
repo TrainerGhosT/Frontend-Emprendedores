@@ -24,7 +24,7 @@ export default class LoginComponent {
 
   constructor() {
     this.loginForm = this.fb.group({
-      Correo: ['', [Validators.required, this.CorreoValidator]],
+      Correo: ['', [Validators.required,  this.CorreoValidator]],
       Contraseña: ['', Validators.required],
     });
   }

@@ -9,7 +9,7 @@ import { AuthResponse } from '../data/auth-login.data';
   providedIn: 'root', // Esto asegura que el servicio esté disponible en toda la aplicación
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:3000/api/auth';  // URL de tu backend
+  private apiUrl = 'http://localhost:3000/api/auth'; // backend url endpoint
   private _isAuthenticated = signal<boolean>(false);
   private _token = signal<string | null>(null);
 
@@ -26,17 +26,26 @@ export class AuthService {
         localStorage.removeItem('auth_token');
         this._isAuthenticated.set(false);
       }
-    }, { allowSignalWrites: true });  // Permite escribir en señales dentro de este efecto
+    });
   }
 
   login(Correo: string, Contraseña: string): Observable<AuthResponse> {
-    const request = this.http.post<AuthResponse>(`${this.apiUrl}/login`, { Correo, Contraseña });
-    
+    const request = this.http.post<AuthResponse>(`${this.apiUrl}/login`, {
+      Correo,
+      Contraseña,
+    });
+
     return request.pipe(
-      tap((response) => {
-        console.log(response);
-        this._token.set(response.accessToken);
-        //this.router.navigate(['/']);
+      tap({
+        next: (response) => {
+          
+          console.log(response);
+          this._token.set(response.accessToken);
+          //this.router.navigate(['/']);
+        },
+        error: (error) => {
+          console.error('Login error:', error);
+        },
       })
     );
   }
@@ -55,6 +64,7 @@ export class AuthService {
     const token = localStorage.getItem('auth_token');
     if (token) {
       this._token.set(token);
+      console.log('token valido')
     } else {
       this._token.set(null);
     }
