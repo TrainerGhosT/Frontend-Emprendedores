@@ -1,0 +1,55 @@
+<header class="antialiased">
+  <nav class="px-4 bg-gray-900 border-gray-300 lg:px-6">
+    <div class="flex flex-wrap items-center justify-between">
+      <div class="flex items-center justify-start">
+        <LogoComponent></LogoComponent>
+      </div>
+
+      <AvatarMenuComponent></AvatarMenuComponent>
+    </div>
+  </nav>
+</header>
+
+<section class="min-h-screen p-6 text-white bg-gray-900">
+  
+  <div class="mx-auto max-w-7xl">
+    <section class="flex items-center justify-center gap-2">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="30" height="30"   
+        class="fill-indigo-500 mb-2 bi bi-calendar2" 
+        viewBox="0 0 16 16">
+        <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M2 2a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1z"/>
+        <path d="M2.5 4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5z"/>
+      </svg>  
+      <h2 class="mb-2 text-4xl font-bold text-indigo-500"> Ferias de Emprendedores </h2>
+      
+    </section>
+    <h3 class="mb-6 text-2xl font-light text-center text-slate-400">Descubre los eventos más destacados e Inscríbete en alguno</h3>
+
+    <!-- Filters -->
+    <FairFilterComponent
+      [categories]="categories"
+      [selectedCategory]="selectedCategory"
+      [search]="searchTerm"
+      [pageSize]="pageSize"
+      (categoryChange)="onCategoryChange($event)"
+      (searchChange)="onSearchChange($event)"
+      (pageSizeChange)="onPageSizeChange($event)"
+    />
+
+    <!-- Fair Grid -->
+    <div class="grid grid-cols-1 gap-6 mb-8 md:grid-cols-2">
+      @for (fair of paginatedFairs; track fair.id) {
+      <FairCardComponent [fair]="fair" />
+      }
+    </div>
+    <!-- Pagination -->
+    <FairPaginationComponent
+      [currentPage]="currentPage"
+      [pageSize]="pageSize"
+      [totalItems]="filteredFairs.length"
+      (pageChange)="onPageChange($event)"
+    />
+  </div>
+</section>

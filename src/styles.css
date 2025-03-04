@@ -5,4 +5,20 @@
 @tailwind utilities;
 
 
+.mat-mdc-menu-panel {
+    background-color: rgb(17 24 39) !important; /* gray-900 */
+  }
 
+.mat-mdc-menu-item {
+    font-family: 'Montserrat' !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+  }
+  
+.mat-mdc-menu-item .mat-mdc-menu-item-text {
+    color: white !important;
+  }
+  
+.mat-mdc-menu-item:hover {
+    background-color: rgb(31 41 55) !important; /* gray-800 para el hover */
+  }

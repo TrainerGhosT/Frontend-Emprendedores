@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { AuthService } from '../Service/auth-login.service';
 import { Router } from '@angular/router';
-import { LogoComponent } from '../../../../components/Logo/logo.component';
+import { LogoComponent } from '../../../../share/Logo/logo.component';
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({

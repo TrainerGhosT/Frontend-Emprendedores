@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
-import { LogoComponent } from '../../../components/Logo/logo.component';
+import { LogoComponent } from '../../../share/Logo/logo.component';
 import { RouterLink } from '@angular/router';
 
 

@@ -1,0 +1,60 @@
+<section class="p-6 mb-8 bg-gray-800 shadow-lg rounded-xl">
+  <div class="flex flex-col items-start gap-6 md:flex-row md:items-center">
+    <!-- Search -->
+    <div class="flex-1 w-full">
+      <div class="relative">
+        <input
+          type="text"
+          [ngModel]="search"
+          (ngModelChange)="onSearchChange($event)"
+          placeholder="Buscar ferias..."
+          class="w-full bg-gray-700 text-white rounded-lg pl-4 pr-10 py-2.5 focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+        />
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="absolute w-5 h-5 text-gray-400 right-3 top-3"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+          />
+        </svg>
+      </div>
+    </div>
+
+    <!-- Categories -->
+    <div class="flex flex-wrap gap-2">
+      @for (category of categories; track category) {
+      <button
+        (click)="onCategorySelect(category)"
+        [class.bg-indigo-600]="selectedCategory === category"
+        [class.text-white]="selectedCategory === category"
+        [class.bg-gray-700]="selectedCategory !== category"
+        [class.text-gray-300]="selectedCategory !== category"
+        class="px-4 py-2 text-sm font-medium transition-colors duration-300 rounded-full hover:bg-indigo-600"
+      >
+        {{ category }}
+      </button>
+      }
+    </div>
+
+    <!-- Page Size Selector -->
+    <div class="flex items-center gap-2">
+      <label class="text-sm text-gray-400">Elementos por página:</label>
+      <select
+        [ngModel]="pageSize"
+        (ngModelChange)="onPageSizeChange($event)"
+        class="px-3 py-2 text-white bg-gray-700 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+      >
+        <option [value]="6">6</option>
+        <option [value]="12">12</option>
+        <option [value]="24">24</option>
+      </select>
+    </div>
+  </div>
+</section>

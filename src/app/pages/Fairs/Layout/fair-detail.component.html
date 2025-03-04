@@ -1,0 +1,440 @@
+<div class="min-h-screen px-4 py-12 bg-gray-900 sm:px-6 lg:px-8">
+  <div class="mx-auto max-w-7xl">
+    <!-- Botón Volver -->
+    <button
+      (click)="volver()"
+      class="flex items-center mb-8 text-indigo-400 transition-colors group hover:text-indigo-300"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="w-5 h-5 mr-2 transition-transform group-hover:-translate-x-1"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M10 19l-7-7m0 0l7-7m-7 7h18"
+        />
+      </svg>
+      Volver a ferias
+    </button>
+
+    @if (loading()) {
+    <div class="flex flex-col items-center justify-center min-h-[400px]">
+      <div
+        class="w-12 h-12 border-t-2 border-b-2 border-indigo-500 rounded-full animate-spin"
+      ></div>
+      <p class="mt-4 text-lg text-gray-400">Cargando información de la feria...</p>
+    </div>
+    } @else {
+    <div class="grid grid-cols-1 lg:grid-cols-[1.5fr_1fr] gap-8">
+      <!-- Card Principal -->
+      <div
+        class="overflow-hidden bg-gray-800/40 border border-gray-700 shadow-xl rounded-2xl"
+      >
+        <div class="relative h-[460px] overflow-hidden"> 
+          <img
+            [src]="fair()!.image"
+            [alt]="fair()!.title"
+            class="object-fit w-full h-full"
+          />
+          
+        </div>
+        <div class="p-8">
+          
+          <h1 class="mb-2 text-4xl font-bold text-white">
+            {{ fair()!.title }}
+          </h1>
+          <div class="flex mb-2 gap-4 left-4"> 
+            <span
+              class="px-4 py-1.5 text-sm font-medium text-white bg-indigo-700 rounded-full"
+            >
+              {{ fair()!.category }}
+            </span>
+          </div>
+          <p class="mb-4 text-pretty font-medium text-lg text-slate-200">
+            {{ fair()!.shortDescription }}
+          </p>
+          <p class="leading-relaxed text-pretty  text-slate-400">{{ fair()!.description }}</p>
+          <button
+            class="flex items-center justify-center w-full gap-2 px-6 py-3 mt-8 text-lg font-semibold text-slate-100 transition-colors bg-indigo-600 rounded-xl hover:bg-indigo-500 group"
+          >
+          <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24" height="24"
+          class="fill-indigo-100 bi bi-calendar2" 
+          viewBox="0 0 16 16">
+          <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M2 2a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1z"/>
+          <path d="M2.5 4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5z"/>
+        </svg> 
+            <span>Inscribirse al evento</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Card de información adicional -->
+      <div class="p-8 bg-gray-800/40 border border-gray-700 shadow-xl rounded-2xl">
+        <h2 class="mb-6 text-xl font-bold text-indigo-500">
+          Detalles del Evento
+        </h2>
+
+        <div class="space-y-5">
+          <div class="flex items-center">
+            <div
+              class="flex items-center justify-center w-10 h-10 flex-shrink-0 mr-3 rounded-full bg-indigo-500/20"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-6 h-6 text-indigo-400"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                />
+              </svg>
+            </div>
+            <div>
+              <p class="text-sm text-gray-400">Fecha</p>
+              @if (!fair()!.fairEndDate || fair()!.fairStartDate.toDateString()
+              === fair()!.fairEndDate!.toDateString()) {
+              <p class="font-medium text-white">
+                {{ formatDate(fair()!.fairStartDate) }}
+              </p>
+              } @else {
+              <p class="font-medium text-white">
+                {{ fair()!.fairStartDate| date: 'd'  }} - {{ formatDate(fair()!.fairEndDate) }} 
+              </p>
+              }
+            </div>
+          </div>
+
+          <div class="flex items-center">
+            <div
+              class="flex items-center justify-center w-10 h-10 flex-shrink-0 mr-3 rounded-full bg-indigo-500/20"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-6 h-6 text-indigo-400"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+            </div>
+            <div>
+              <p class="text-sm text-gray-400">Hora</p>
+              @if (!fair()!.hourEnd) {
+              <p class="font-medium text-white">
+                {{ formatTime(fair()!.hourStart) }}
+              </p>
+              } @else {
+              <p class="font-medium text-white">
+                {{ formatTime(fair()!.hourStart)  }} - {{ formatTime(fair()!.hourEnd) }}
+              </p>
+              }
+            </div>
+          </div>
+
+          <div class="flex items-center">
+            <div
+              class="flex items-center justify-center w-10 h-10 flex-shrink-0 mr-3 rounded-full bg-indigo-500/20"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-6 h-6 text-indigo-400"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                />
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                />
+              </svg>
+            </div>
+            <div>
+              <p class="text-sm text-gray-400">Ubicación</p>
+              <p class="font-medium text-white">{{ fair()!.location }}</p>
+            </div>
+          </div>
+
+          <div class="flex items-center">
+            <div
+              class="flex items-center justify-center w-10 h-10 flex-shrink-0 mr-3 rounded-full bg-indigo-500/20"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke="currentColor"
+                class="w-6 h-6 text-indigo-400"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z"
+                />
+              </svg>
+            </div>
+            <div>
+              <p class="text-sm text-gray-400">Capacidad</p>
+              <p class="font-medium text-white">
+                {{ fair()!.capacity }} personas
+              </p>
+            </div>
+          </div>
+
+          <div class="flex items-center">
+            <div
+              class="flex items-center justify-center w-10 h-10 flex-shrink-0 mr-3 rounded-full bg-indigo-500/20"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-6 h-6 text-indigo-400"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+            </div>
+            <div>
+              <p class="text-sm text-gray-400">Costo</p>
+              <p class="font-medium text-white">
+                {{ getCostDisplay(fair()!.cost) }}
+              </p>
+            </div>
+          </div>
+
+          <div class="mt-8">
+            <h3 class="mb-4 text-lg font-semibold text-indigo-500">
+              Condiciones
+            </h3>
+            <div class="grid grid-cols-2 gap-4">
+              <div class="flex items-center">
+                <div
+                  class="flex items-center justify-center w-8 h-8 flex-shrink-0 rounded-full"
+                  [ngClass]="
+                    fair()!.conditions.internet
+                      ? 'bg-green-500/20'
+                      : 'bg-gray-500/20'
+                  "
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="w-6 h-6 flex-shrink-0"
+                    [ngClass]="
+                      fair()!.conditions.internet
+                        ? 'text-green-400'
+                        : 'text-gray-400'
+                    "
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0"
+                    />
+                  </svg>
+                </div>
+                <span
+                  class="ml-2"
+                  [ngClass]="
+                    fair()!.conditions.internet ? 'text-white' : 'text-gray-500'
+                  "
+                  >Internet</span
+                >
+              </div>
+
+              <div class="flex items-center">
+                <div
+                  class="flex items-center justify-center w-8 h-8 flex-shrink-0 rounded-full"
+                  [ngClass]="
+                    fair()!.conditions.water
+                      ? 'bg-green-500/20'
+                      : 'bg-slate-500/20'
+                  "
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="w-[1.7rem] h-[1.7rem] mt-1"
+                    [ngClass]="
+                      fair()!.conditions.water
+                        ? 'text-green-400'
+                        : 'text-slate-400'
+                    "
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M12 3C8.134 7.2 6 10.2 6 13a6 6 0 1012 0c0-2.8-2.134-5.8-6-10z"
+                    />
+                  </svg>
+                </div>
+                <span
+                  class="ml-2"
+                  [ngClass]="
+                    fair()!.conditions.water ? 'text-white' : 'text-gray-500'
+                  "
+                  >Agua</span
+                >
+              </div>
+
+              <div class="flex items-center">
+                <div
+                  class="flex items-center justify-center w-8 h-8 rounded-full"
+                  [ngClass]="
+                    fair()!.conditions.light
+                      ? 'bg-green-500/20'
+                      : 'bg-gray-500/20'
+                  "
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="w-6 h-6"
+                    [ngClass]="
+                      fair()!.conditions.light
+                        ? 'text-green-400'
+                        : 'text-gray-400'
+                    "
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
+                    />
+                  </svg>
+                </div>
+                <span
+                  class="ml-2"
+                  [ngClass]="
+                    fair()!.conditions.light ? 'text-white' : 'text-gray-500'
+                  "
+                  >Luz</span
+                >
+              </div>
+
+              <div class="flex items-center">
+                <div
+                  class="flex items-center justify-center w-8 h-8 rounded-full"
+                  [ngClass]="
+                    fair()!.conditions.cable
+                      ? 'bg-green-500/20'
+                      : 'bg-gray-500/20'
+                  "
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="w-5 h-5"
+                    [ngClass]="
+                      fair()!.conditions.cable
+                        ? 'text-green-400'
+                        : 'text-gray-400'
+                    "
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                    />
+                  </svg>
+                </div>
+                <span
+                  class="ml-2"
+                  [ngClass]="
+                    fair()!.conditions.cable ? 'text-white' : 'text-gray-500'
+                  "
+                  >Cable</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card Agenda  -->
+      <div
+        class="p-8 bg-gray-800/40 border border-gray-700 shadow-xl lg:col-span-2 rounded-2xl"
+      >
+        <h2 class="mb-8 text-2xl font-bold text-indigo-500">
+          Agenda de los contenidos del Evento
+        </h2>
+
+        <!-- Timeline  -->
+        <ol class="relative border-s-2 border-indigo-600/30 ms-4">
+          @for (content of fair()!.contents; track content.id) {
+          <li class="mb-10 ms-6">
+            <!-- Punto del timeline -->
+            <div
+              class="absolute w-4 h-4 bg-indigo-600 rounded-full -start-2 mt-1.5 border-2 border-gray-800"
+            ></div>
+
+          
+            
+
+            <!-- Título y descripción -->
+            <h3 class="mt-2 text-xl font-semibold text-white">
+              {{ content.title }}
+              @if (content.hour) {
+              <time class="bg-indigo-800 text-indigo-100 text-sm font-medium me-2 px-2.5 py-1 rounded-sm ms-3">
+                {{ formatTime(content.hour) }}
+              </time>
+            }
+            </h3>
+            @if (content.description) {
+            <p class="mt-2 text-base font-normal text-pretty text-slate-400">
+              {{ content.description }}
+            </p>
+            }
+            
+          </li>
+          }
+        </ol>
+      </div>
+    </div>
+    }
+  </div>
+</div>
