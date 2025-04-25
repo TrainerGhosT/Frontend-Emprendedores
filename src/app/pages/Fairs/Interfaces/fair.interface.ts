@@ -1,4 +1,4 @@
-import { Timestamp } from "rxjs";
+
 
 export interface Fair {
     id: number;

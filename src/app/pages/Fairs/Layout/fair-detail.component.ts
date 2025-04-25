@@ -55,7 +55,7 @@ export default class FairDetailComponent  {
       }
       
       volver() {
-        this.router.navigate(['/ferias']);
+        this.router.navigate(['/home/ferias']);
       }
     
     

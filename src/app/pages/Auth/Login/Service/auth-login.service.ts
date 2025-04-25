@@ -6,7 +6,7 @@ import { tap } from 'rxjs/operators';
 import { AuthResponse } from '../data/auth-login.data';
 
 @Injectable({
-  providedIn: 'root', // Esto asegura que el servicio esté disponible en toda la aplicación
+  providedIn: 'root',
 })
 export class AuthService {
   private apiUrl = 'http://localhost:3000/api/auth'; // backend url endpoint
@@ -27,6 +27,10 @@ export class AuthService {
         this._isAuthenticated.set(false);
       }
     });
+
+    // Si hay token en localStorage al iniciar
+    const token = localStorage.getItem('auth_token');
+    if (token) this._token.set(token);
   }
 
   login(Correo: string, Contraseña: string): Observable<AuthResponse> {
@@ -38,10 +42,8 @@ export class AuthService {
     return request.pipe(
       tap({
         next: (response) => {
-          
-          console.log(response);
+          console.log('Api response:',response);
           this._token.set(response.accessToken);
-          //this.router.navigate(['/']);
         },
         error: (error) => {
           console.error('Login error:', error);
@@ -52,7 +54,7 @@ export class AuthService {
 
   logout() {
     this._token.set(null);
-    this.router.navigate(['/login']);
+    this.router.navigate(['/']);
   }
 
   get isAuthenticated() {
@@ -64,9 +66,11 @@ export class AuthService {
     const token = localStorage.getItem('auth_token');
     if (token) {
       this._token.set(token);
-      console.log('token valido')
+      console.log('token valido');
     } else {
       this._token.set(null);
     }
+
+    return token;
   }
 }

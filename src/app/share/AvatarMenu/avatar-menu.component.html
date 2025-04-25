@@ -6,7 +6,12 @@
   alt="User dropdown"
 />
 <mat-menu #avatarMenu="matMenu">
-  <button class="transition-colors" routerLink="/" routerLinkActive="router-link-active" mat-menu-item>
+  <button
+    class="transition-colors"
+    routerLink="/home"
+    routerLinkActive="router-link-active"
+    mat-menu-item
+  >
     <mat-icon
       ><svg
         xmlns="http://www.w3.org/2000/svg"
@@ -73,7 +78,7 @@
     <span>Preferencias</span>
   </button>
 
-  <button routerLink="/" routerLinkActive="router-link-active" mat-menu-item>
+  <button (click)="OnClickLogout()" mat-menu-item>
     <mat-icon
       ><svg
         xmlns="http://www.w3.org/2000/svg"

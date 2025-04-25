@@ -1,34 +1,50 @@
-<div class="flex h-[280px] transition-shadow duration-300 bg-gray-800 border border-gray-700 shadow-lg rounded-xl hover:shadow-2xl">
-    <div class="w-2/5 overflow-hidden">
-      <img [src]="fair.image" [alt]="fair.title" class="w-full h-full object-fit">
-    </div>
-    <div class="flex flex-col flex-1 p-6">
-      <div>
-        <h3 class="mb-2 text-2xl font-bold text-white line-clamp-2">{{fair.title}}</h3>
-        <div class="flex items-center gap-3 mb-3">
-          <span class="px-3 py-1 text-sm font-medium text-indigo-200 bg-indigo-900 rounded-full">
-            {{fair.category}}
-          </span>
-          <span class="text-sm text-gray-400">
-            Publicado el {{fair.publishDate | date: 'mediumDate'}}
-          </span>
-        </div>
-        <p class="mb-2 text-gray-300 text-pretty line-clamp-4">{{fair.shortDescription}}</p>
-      </div>
-      
-      <button
-  [routerLink]="['/ferias/detalle-feria', fair.id]"
-  class="mt-auto w-full bg-indigo-600 text-white py-2.5 px-4 rounded-lg hover:bg-indigo-500 transition-colors duration-300 flex items-center justify-center gap-2 text-sm font-medium group"
+<section
+  class="flex h-[280px] transition-shadow duration-300 bg-gray-800 border border-gray-700 shadow-lg rounded-xl hover:shadow-2xl"
 >
-  Ver Detalles
-  <svg 
-    xmlns="http://www.w3.org/2000/svg" 
-    class="w-4 h-4 transition-transform group-hover:translate-x-1" 
-    viewBox="0 0 20 20" 
-    fill="currentColor"
-  >
-    <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
-  </svg>
-</button>
-    </div>
+  <div class="w-2/5 overflow-hidden">
+    <img
+      [src]="fair.image"
+      [alt]="fair.title"
+      class="w-full h-full object-fit"
+    />
   </div>
+  <div class="flex flex-col flex-1 p-6">
+    <div>
+      <h3 class="mb-2 text-2xl font-bold text-white line-clamp-2">
+        {{ fair.title }}
+      </h3>
+      <div class="flex items-center gap-3 mb-3">
+        <span
+          class="px-3 py-1 text-sm font-medium text-indigo-200 bg-indigo-900 rounded-full"
+        >
+          {{ fair.category }}
+        </span>
+        <span class="text-sm text-gray-400">
+          Publicado el {{ fair.publishDate | date : "mediumDate" }}
+        </span>
+      </div>
+      <p class="mb-2 text-gray-300 text-pretty line-clamp-4">
+        {{ fair.shortDescription }}
+      </p>
+    </div>
+
+    <button
+      [routerLink]="['/home/ferias/detalle-feria', fair.id]"
+      class="mt-auto w-full bg-indigo-600 text-white py-2.5 px-4 rounded-lg hover:bg-indigo-500 transition-colors duration-300 flex items-center justify-center gap-2 text-sm font-medium group"
+    >
+      Ver Detalles
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="w-4 h-4 transition-transform group-hover:translate-x-1"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+          clip-rule="evenodd"
+        />
+      </svg>
+    </button>
+  </div>
+</section>
