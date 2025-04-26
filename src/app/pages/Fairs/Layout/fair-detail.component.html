@@ -35,34 +35,34 @@
     <div class="grid grid-cols-1 lg:grid-cols-[1.5fr_1fr] gap-8">
       <!-- Card Principal -->
       <div
-        class="overflow-hidden bg-gray-800/40 border border-gray-700 shadow-xl rounded-2xl"
+        class="overflow-hidden border border-gray-700 shadow-xl bg-gray-800/40 rounded-2xl"
       >
         <div class="relative h-[460px] overflow-hidden">
           <img
-            [src]="fair()!.image"
-            [alt]="fair()!.title"
-            class="object-fit w-full h-full"
+            [src]="fair()!.Imagen"
+            [alt]="fair()!.Titulo"
+            class="w-full h-full object-fit"
           />
         </div>
         <div class="p-8">
           <h1 class="mb-2 text-4xl font-bold text-white">
-            {{ fair()!.title }}
+            {{ fair()!.Titulo }}
           </h1>
-          <div class="flex mb-2 gap-4 left-4">
+          <div class="flex gap-4 mb-2 left-4">
             <span
               class="px-4 py-1.5 text-sm font-medium text-white bg-indigo-700 rounded-full"
             >
-              {{ fair()!.category }}
+              {{ fair()!.Area }}
             </span>
           </div>
-          <p class="mb-4 text-pretty font-medium text-lg text-slate-200">
-            {{ fair()!.shortDescription }}
+          <p class="mb-4 text-lg font-medium text-pretty text-slate-200">
+            {{ fair()!.Descripcion_Corta }}
           </p>
           <p class="leading-relaxed text-pretty text-slate-400">
-            {{ fair()!.description }}
+            {{ fair()!.Descripcion }}
           </p>
           <button
-            class="flex items-center justify-center w-full gap-2 px-6 py-3 mt-8 text-lg font-semibold text-slate-100 transition-colors bg-indigo-600 rounded-xl hover:bg-indigo-500 group"
+            class="flex items-center justify-center w-full gap-2 px-6 py-3 mt-8 text-lg font-semibold transition-colors bg-indigo-600 text-slate-100 rounded-xl hover:bg-indigo-500 group"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -85,7 +85,7 @@
 
       <!-- Card de información adicional -->
       <div
-        class="p-8 bg-gray-800/40 border border-gray-700 shadow-xl rounded-2xl"
+        class="p-8 border border-gray-700 shadow-xl bg-gray-800/40 rounded-2xl"
       >
         <h2 class="mb-6 text-xl font-bold text-indigo-500">
           Detalles del Evento
@@ -94,7 +94,7 @@
         <div class="space-y-5">
           <div class="flex items-center">
             <div
-              class="flex items-center justify-center w-10 h-10 flex-shrink-0 mr-3 rounded-full bg-indigo-500/20"
+              class="flex items-center justify-center flex-shrink-0 w-10 h-10 mr-3 rounded-full bg-indigo-500/20"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -112,24 +112,18 @@
               </svg>
             </div>
             <div>
-              <p class="text-sm text-gray-400">Fecha</p>
-              @if (!fair()!.fairEndDate || fair()!.fairStartDate.toDateString()
-              === fair()!.fairEndDate!.toDateString()) {
               <p class="font-medium text-white">
-                {{ formatDate(fair()!.fairStartDate) }}
+                 {{ fair()!.Fecha_Inicio | date: 'mediumDate' }}
+                @if (fair()!.Fecha_Fin) {
+                  {{ fair()!.Fecha_Inicio! | date: 'mediumDate' }} -  {{ fair()!.Fecha_Fin! }}  
+                }
               </p>
-              } @else {
-              <p class="font-medium text-white">
-                {{ fair()!.fairStartDate | date : "d" }} -
-                {{ formatDate(fair()!.fairEndDate) }}
-              </p>
-              }
             </div>
           </div>
 
           <div class="flex items-center">
             <div
-              class="flex items-center justify-center w-10 h-10 flex-shrink-0 mr-3 rounded-full bg-indigo-500/20"
+              class="flex items-center justify-center flex-shrink-0 w-10 h-10 mr-3 rounded-full bg-indigo-500/20"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -147,23 +141,23 @@
               </svg>
             </div>
             <div>
-              <p class="text-sm text-gray-400">Hora</p>
-              @if (!fair()!.hourEnd) {
-              <p class="font-medium text-white">
-                {{ formatTime(fair()!.hourStart) }}
-              </p>
-              } @else {
-              <p class="font-medium text-white">
-                {{ formatTime(fair()!.hourStart) }} -
-                {{ formatTime(fair()!.hourEnd) }}
-              </p>
-              }
+                <p class="text-sm text-gray-400">Hora</p>
+                @if (!fair()!.Hora_Fin) {
+                <p class="font-medium text-white">
+                {{ fair()!.Hora_Inicio }}
+                </p>
+                } @else {
+                <p class="font-medium text-white">
+                {{ fair()!.Hora_Inicio }} -
+                {{ fair()!.Hora_Fin }}
+                </p>
+                }
             </div>
           </div>
 
           <div class="flex items-center">
             <div
-              class="flex items-center justify-center w-10 h-10 flex-shrink-0 mr-3 rounded-full bg-indigo-500/20"
+              class="flex items-center justify-center flex-shrink-0 w-10 h-10 mr-3 rounded-full bg-indigo-500/20"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -186,42 +180,49 @@
                 />
               </svg>
             </div>
+            
             <div>
-              <p class="text-sm text-gray-400">Ubicación</p>
-              <p class="font-medium text-white">{{ fair()!.location }}</p>
+              <p class="text-sm text-gray-400">Lugar</p>
+              <p class="font-medium text-white">{{ fair()!.Lugar }}</p>
             </div>
           </div>
 
           <div class="flex items-center">
             <div
-              class="flex items-center justify-center w-10 h-10 flex-shrink-0 mr-3 rounded-full bg-indigo-500/20"
+              class="flex items-center justify-center flex-shrink-0 w-10 h-10 mr-3 rounded-full bg-indigo-500/20"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
+                class="w-6 h-6 text-indigo-400"
                 fill="none"
                 viewBox="0 0 24 24"
-                stroke-width="2"
                 stroke="currentColor"
-                class="w-6 h-6 text-indigo-400"
               >
                 <path
                   stroke-linecap="round"
                   stroke-linejoin="round"
-                  d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z"
+                  stroke-width="2"
+                  d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                />
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
                 />
               </svg>
             </div>
+            
             <div>
-              <p class="text-sm text-gray-400">Capacidad</p>
-              <p class="font-medium text-white">
-                {{ fair()!.capacity }} personas
-              </p>
+              <p class="text-sm text-gray-400">Ubicación</p>
+              <p class="font-medium text-white">{{ fair()!.Ubicacion }}</p>
             </div>
           </div>
 
+          
           <div class="flex items-center">
             <div
-              class="flex items-center justify-center w-10 h-10 flex-shrink-0 mr-3 rounded-full bg-indigo-500/20"
+              class="flex items-center justify-center flex-shrink-0 w-10 h-10 mr-3 rounded-full bg-indigo-500/20"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -240,9 +241,9 @@
             </div>
             <div>
               <p class="text-sm text-gray-400">Costo</p>
-              <p class="font-medium text-white">
-                {{ getCostDisplay(fair()!.cost) }}
-              </p>
+              
+              <p class="font-medium text-white"> CRC {{ fair()!.Costo | number:'0.0' }}</p>
+             
             </div>
           </div>
 
@@ -253,18 +254,18 @@
             <div class="grid grid-cols-2 gap-4">
               <div class="flex items-center">
                 <div
-                  class="flex items-center justify-center w-8 h-8 flex-shrink-0 rounded-full"
+                  class="flex items-center justify-center flex-shrink-0 w-8 h-8 rounded-full"
                   [ngClass]="
-                    fair()!.conditions.internet
+                    fair()!.Internet
                       ? 'bg-green-500/20'
                       : 'bg-gray-500/20'
                   "
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    class="w-6 h-6 flex-shrink-0"
+                    class="flex-shrink-0 w-6 h-6"
                     [ngClass]="
-                      fair()!.conditions.internet
+                      fair()!.Internet
                         ? 'text-green-400'
                         : 'text-gray-400'
                     "
@@ -283,7 +284,7 @@
                 <span
                   class="ml-2"
                   [ngClass]="
-                    fair()!.conditions.internet ? 'text-white' : 'text-gray-500'
+                    fair()!.Internet ? 'text-white' : 'text-gray-500'
                   "
                   >Internet</span
                 >
@@ -291,9 +292,9 @@
 
               <div class="flex items-center">
                 <div
-                  class="flex items-center justify-center w-8 h-8 flex-shrink-0 rounded-full"
+                  class="flex items-center justify-center flex-shrink-0 w-8 h-8 rounded-full"
                   [ngClass]="
-                    fair()!.conditions.water
+                    fair()!.Agua
                       ? 'bg-green-500/20'
                       : 'bg-slate-500/20'
                   "
@@ -302,7 +303,7 @@
                     xmlns="http://www.w3.org/2000/svg"
                     class="w-[1.7rem] h-[1.7rem] mt-1"
                     [ngClass]="
-                      fair()!.conditions.water
+                      fair()!.Agua
                         ? 'text-green-400'
                         : 'text-slate-400'
                     "
@@ -321,7 +322,7 @@
                 <span
                   class="ml-2"
                   [ngClass]="
-                    fair()!.conditions.water ? 'text-white' : 'text-gray-500'
+                    fair()!.Agua ? 'text-white' : 'text-gray-500'
                   "
                   >Agua</span
                 >
@@ -331,7 +332,7 @@
                 <div
                   class="flex items-center justify-center w-8 h-8 rounded-full"
                   [ngClass]="
-                    fair()!.conditions.light
+                    fair()!.Luz
                       ? 'bg-green-500/20'
                       : 'bg-gray-500/20'
                   "
@@ -340,7 +341,7 @@
                     xmlns="http://www.w3.org/2000/svg"
                     class="w-6 h-6"
                     [ngClass]="
-                      fair()!.conditions.light
+                      fair()!.Luz
                         ? 'text-green-400'
                         : 'text-gray-400'
                     "
@@ -359,7 +360,7 @@
                 <span
                   class="ml-2"
                   [ngClass]="
-                    fair()!.conditions.light ? 'text-white' : 'text-gray-500'
+                    fair()!.Luz ? 'text-white' : 'text-gray-500'
                   "
                   >Luz</span
                 >
@@ -369,7 +370,7 @@
                 <div
                   class="flex items-center justify-center w-8 h-8 rounded-full"
                   [ngClass]="
-                    fair()!.conditions.cable
+                    fair()!.Cable
                       ? 'bg-green-500/20'
                       : 'bg-gray-500/20'
                   "
@@ -378,7 +379,7 @@
                     xmlns="http://www.w3.org/2000/svg"
                     class="w-5 h-5"
                     [ngClass]="
-                      fair()!.conditions.cable
+                      fair()!.Cable
                         ? 'text-green-400'
                         : 'text-gray-400'
                     "
@@ -397,7 +398,7 @@
                 <span
                   class="ml-2"
                   [ngClass]="
-                    fair()!.conditions.cable ? 'text-white' : 'text-gray-500'
+                    fair()!.Cable ? 'text-white' : 'text-gray-500'
                   "
                   >Cable</span
                 >
@@ -409,7 +410,7 @@
 
       <!-- Card Agenda  -->
       <div
-        class="p-8 bg-gray-800/40 border border-gray-700 shadow-xl lg:col-span-2 rounded-2xl"
+        class="p-8 border border-gray-700 shadow-xl bg-gray-800/40 lg:col-span-2 rounded-2xl"
       >
         <h2 class="mb-8 text-2xl font-bold text-indigo-500">
           Agenda de los contenidos del Evento
@@ -417,7 +418,7 @@
 
         <!-- Timeline  -->
         <ol class="relative border-s-2 border-indigo-600/30 ms-4">
-          @for (content of fair()!.contents; track content.id) {
+          @for (content of fair()!.content; track content.Id_Tema) {
           <li class="mb-10 ms-6">
             <!-- Punto del timeline -->
             <div
@@ -426,18 +427,18 @@
 
             <!-- Título y descripción -->
             <h3 class="mt-2 text-xl font-semibold text-white">
-              {{ content.title }}
-              @if (content.hour) {
+              {{ content.Titulo }}
+              @if (content.Hora_Inicio) {
               <time
                 class="bg-indigo-800 text-indigo-100 text-sm font-medium me-2 px-2.5 py-1 rounded-sm ms-3"
               >
-                {{ formatTime(content.hour) }}
+                {{ formatTime(content.Hora_Inicio) }}
               </time>
               }
             </h3>
-            @if (content.description) {
+            @if (content.Descripcion) {
             <p class="mt-2 text-base font-normal text-pretty text-slate-400">
-              {{ content.description }}
+              {{ content.Descripcion }}
             </p>
             }
           </li>

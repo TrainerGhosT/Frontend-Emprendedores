@@ -1,35 +1,40 @@
-
-
 export interface Fair {
-    id: number;
-    title: string;
-    shortDescription: string;
-    description: string;
-    category: string;
-    image: string;
-    publishDate: Date;
-    fairStartDate: Date;
-    fairEndDate?: Date;
-    hourStart: string;
-    hourEnd?: string; 
-    location: string;
-    capacity: number,
-    cost: number;
-    conditions: {
-      internet: boolean;
-      cable: boolean;
-      light: boolean;
-      water: boolean;
-      
-    };
-    contents: Content[];
-  }
+  Id_Feria: number;
+  Titulo: string;
+  Descripcion_Corta: string;
+  Descripcion: string;
+  Area: string;
+  Imagen?: string;
+  Fecha_Publicacion: Date;
+  Fecha_Inicio: Date;
+  Fecha_Fin?: Date;
+  Hora_Inicio: string;
+  Hora_Fin?: string;
 
-  export interface Content {
-    id: number;
-    title: string;
-    description?: string;
-    hour?: string;
-  }
-  
-  export type PageSize = 6 | 12 | 24;
+  Lugar: string;
+  Ubicacion: string;
+  Costo: number;
+
+  Internet: 'Incluido' | 'No Incluido';
+  Cable: 'Incluido' | 'No Incluido';
+  Luz: 'Incluido' | 'No Incluido';
+  Agua: 'Incluido' | 'No Incluido';
+
+  content: Content[];
+}
+
+export interface Condiciones {
+  internet: boolean;
+  cable: boolean;
+  light: boolean;
+  water: boolean;
+}
+export interface Content {
+  Id_Tema: number;
+  Titulo: string;
+  Descripcion?: string;
+  Hora_Inicio: string;
+  Hora_Fin?: string;
+}
+
+export type PageSize = 6 | 12 | 24;

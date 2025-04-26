@@ -1,10 +1,10 @@
-<img
+<div
   mat-button
   [matMenuTriggerFor]="avatarMenu"
-  class="object-cover rounded-full cursor-pointer w-14 h-14"
-  src="./assets/img/logo-lambda.jpg"
-  alt="User dropdown"
-/>
+  class="flex items-center justify-center w-10 h-10 text-white bg-indigo-700 rounded-full cursor-pointer focus:outline-none focus:ring-2 focus:ring-indigo-500"
+>
+  {{ authService.userInfo()?.initials || "U" }}
+</div>
 <mat-menu #avatarMenu="matMenu">
   <button
     class="transition-colors"

@@ -40,7 +40,7 @@
 
     <!-- Fair Grid -->
     <div class="grid grid-cols-1 gap-6 mb-8 md:grid-cols-2">
-      @for (fair of paginatedFairs; track fair.id) {
+      @for (fair of paginatedFairs; track fair.Id_Feria) {
       <FairCardComponent [fair]="fair" />
       }
     </div>

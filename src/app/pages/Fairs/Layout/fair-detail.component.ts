@@ -20,14 +20,30 @@ export default class FairDetailComponent  {
     fair = signal<Fair | null>(null);
 
     constructor() {
-        this.route.params.subscribe(params => {
-          const id = Number(params['id']);
-          const fairFound = this.fairService.getFairById(id);
-          if (fairFound) {
-            this.fair.set(fairFound);
-          }
+      this.route.params.subscribe(params => {
+        const id = Number(params['id']);
+        const fairFound = this.fairService.getFairById(id);
+        
+        if (fairFound) {
+          this.fair.set(fairFound);
           this.loading.set(false);
-        });
+        } else {
+          // Si no se encuentra en el estado local, obtener de la API
+          this.fairService.getFairByIdFromApi(id).subscribe({
+            next: (fair) => {
+              this.fair.set(fair);
+              this.loading.set(false);
+            },
+            error: (error) => {
+              console.error('Error loading fair:', error);
+              this.loading.set(false);
+            }
+          });
+        }
+      });
+    }
+      isIncluded(condition: 'Incluido' | 'No Incluido'): boolean {
+        return condition === 'Incluido';
       }
 
       formatTime(time?: string): string { 
@@ -41,15 +57,17 @@ export default class FairDetailComponent  {
       }
       
       
-      formatDate(date?: Date): string {
+      formatDateTime(date: Date | string): string {
         if (!date) return '';
-        return new Date(date).toLocaleDateString('es-ES', {
-          day: 'numeric',
+        const dateObj = new Date(date);
+        return dateObj.toLocaleDateString('es-CR', {
+          day: '2-digit',
           month: 'long',
-          year: 'numeric'
+          year: 'numeric',
         });
       }
     
+      
       getCostDisplay(cost: number): string {
         return cost === 0 ? 'Gratuito' : `${cost.toFixed(0)} colones`;
       }

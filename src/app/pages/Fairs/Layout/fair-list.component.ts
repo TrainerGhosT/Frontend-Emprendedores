@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
@@ -11,6 +11,7 @@ import { AvatarMenuComponent } from '../../../share/AvatarMenu/avatar-menu.compo
 import { Fair, PageSize } from '../Interfaces/fair.interface';
 import { FairPaginationComponent } from '../components/Pagination/fair-pagination.component';
 import { FairService } from '../services/fair.service';
+
 @Component({
   selector: 'FairListComponent',
   standalone: true,
@@ -23,15 +24,13 @@ import { FairService } from '../services/fair.service';
     FairCardComponent,
     FairFilterComponent,
     FairPaginationComponent,
-    
   ],
   templateUrl: './fair-list.component.html',
   styleUrl: './fair-list.component.css',
 })
 export default class FairListComponent {
-  
   private fairService = inject(FairService);
-  fairs = this.fairService.getFairs();
+  fairs: Fair[] = [];
 
   categories: string[] = [
     'Tecnología',
@@ -39,20 +38,39 @@ export default class FairListComponent {
     'Emprendimiento',
     'Educación',
     'Automotriz'
-    
   ];
   selectedCategory: string = '';
   searchTerm: string = '';
   currentPage: number = 1;
   pageSize: PageSize = 6;
+  isLoading = true;
+
+  ngOnInit(): void {
+    this.loadFairs();
+  }
+
+  loadFairs(): void {
+    this.isLoading = true;
+    this.fairService.refreshFairs().subscribe({
+      next: (data) => {
+        this.fairs = this.fairService.getFairs();
+        console.log('Ferias Obtenidas:', this.fairs);
+        this.isLoading = false;
+      },
+      error: (error) => {
+        console.error('Error loading fairs:', error);
+        this.isLoading = false;
+      }
+    });
+  }
 
   get filteredFairs(): Fair[] {
     return this.fairs.filter(
       (fair) =>
-        (!this.selectedCategory || fair.category === this.selectedCategory) &&
+        (!this.selectedCategory || fair.Area === this.selectedCategory) &&
         (!this.searchTerm ||
-          fair.title.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-          fair.description
+          fair.Titulo.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+          fair.Descripcion_Corta
             .toLowerCase()
             .includes(this.searchTerm.toLowerCase()))
     );

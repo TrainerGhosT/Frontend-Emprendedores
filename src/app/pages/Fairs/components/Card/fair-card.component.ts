@@ -13,6 +13,8 @@ import { RouterModule } from '@angular/router';
 export class FairCardComponent {
   @Input() fair!: Fair;
 
-  
+  handleImageError(event: any) {
+    event.target.src = 'https://source.unsplash.com/random/800x600/?business,event';
+  }
   
 }
